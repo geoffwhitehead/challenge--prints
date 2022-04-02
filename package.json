@@ -1,9 +1,16 @@
 {
-  "name": "harvard-prints",
+  "name": "my-template-node-react",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=14",    
+    "npm": ">= 5.6"
+  },
   "scripts": {
+    "dev": "docker-compose -f docker-compose.dev.yml up",
+    "prod": "docker-compose -f docker-compose.prod.yml build",
+    "prod-run": "docker run -p 80:80 --name react-app app-prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
