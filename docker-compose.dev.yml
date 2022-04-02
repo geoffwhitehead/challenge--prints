@@ -9,16 +9,17 @@ services:
       target: development
     volumes:
       - ./client/src:/app/src
+      - /client/node_modules
     ports:
       - 3000:3000
   server:
     container_name: server-dev
     image: server-dev
-    build: 
+    build:
       context: ./server
       target: development
     volumes:
       - ./server/src:/server/src
+      - /server/node_modules
     ports:
       - 8000:8000
-

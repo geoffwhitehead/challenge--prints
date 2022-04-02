@@ -1,16 +1,13 @@
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
-
 import express, { NextFunction, Request, Response } from "express";
 import StatusCodes from "http-status-codes";
 import "express-async-errors";
-
 import apiRouter from "./routes/api";
 import logger from "jet-logger";
 import { CustomError } from "@shared/errors";
 
-// Constants
 const app = express();
 
 /***********************************************************************************
@@ -46,7 +43,7 @@ app.use(
     const status =
       err instanceof CustomError ? err.HttpStatus : StatusCodes.BAD_REQUEST;
     return res.status(status).json({
-      error: err.message,
+      error: err.message || "server error",
     });
   }
 );
