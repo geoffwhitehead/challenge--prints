@@ -15,18 +15,15 @@ const app = express();
  *                                  Middlewares
  **********************************************************************************/
 
-// Common middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Show routes called in console during development
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-// Security (helmet recommended in express docs)
 if (process.env.NODE_ENV === "production") {
   app.use(helmet());
 }
@@ -35,10 +32,8 @@ if (process.env.NODE_ENV === "production") {
  *                         API routes and error handling
  **********************************************************************************/
 
-// Add api router
 app.use("/api", apiRouter);
 
-// Error handling
 app.use(
   (err: Error | CustomError, _: Request, res: Response, __: NextFunction) => {
     logger.err(err, true);
@@ -50,5 +45,4 @@ app.use(
   }
 );
 
-// Export here and start in a diff file (for testing).
 export default app;

@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import { Print } from "./types";
 
-const baseUrl = "https://api.harvardartmuseums.org/";
+const baseUrl = "https://api.harvardartmuseums.org";
 
 const fields = [
   "copyright",
@@ -27,7 +27,7 @@ const fields = [
 ];
 
 async function getPrints(page: string): Promise<Print[]> {
-  const query = new URLSearchParams({
+  const search = new URLSearchParams({
     apikey: process.env.API_KEY as string,
     size: "10",
     page,
@@ -39,7 +39,7 @@ async function getPrints(page: string): Promise<Print[]> {
     fields: fields.join(","),
   });
 
-  const response = await fetch(`${baseUrl}object?${query.toString()}`);
+  const response = await fetch(`${baseUrl}/object?${search.toString()}`);
 
   const data = await response.json();
   return data as Print[];
