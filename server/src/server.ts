@@ -7,6 +7,7 @@ import "express-async-errors";
 import apiRouter from "./routes/api";
 import logger from "jet-logger";
 import { CustomError } from "@shared/errors";
+import bodyParser from "body-parser";
 
 const app = express();
 
@@ -16,8 +17,9 @@ const app = express();
 
 // Common middlewares
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === "development") {

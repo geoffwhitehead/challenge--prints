@@ -35,7 +35,5 @@ import Joi from "joi";
     throw result.error;
   }
 
-  console.log("result", result);
-
-  await envSchema.validateAsync(result.parsed);
+  await envSchema.validateAsync(result.parsed, { allowUnknown: true });
 })();

@@ -1,17 +1,24 @@
 import StatusCodes from "http-status-codes";
-import { Request, Router } from "express";
+import { Router } from "express";
 import handler from "express-async-handler";
-import printService, { Print } from "@services/print-service";
-import { TypedResponse } from "./types";
+import printService from "@services/print-service";
+import { TypedRequestQuery, TypedResponse } from "./types";
+import { Print } from "@services/types";
+import Joi from "joi";
 
 const router = Router();
 
 export const getPrints = async (
-  req: Request,
+  req: TypedRequestQuery<{ page: string }>,
   res: TypedResponse<{ prints: Print[] }>
 ) => {
-  const prints = await printService.getAll();
-  console.log("prints", prints);
+  const schema = Joi.object({
+    page: Joi.number(),
+  });
+
+  await schema.validateAsync({ page: parseInt(req.query.page) });
+  const prints = await printService.getPrints(req.query.page);
+
   res.status(StatusCodes.OK).json({ prints });
 };
 

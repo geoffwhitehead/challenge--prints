@@ -1,21 +1,50 @@
 import fetch from "node-fetch";
+import { Print } from "./types";
 
-const baseUrl = "https://api.harvardartmuseums.org";
+const baseUrl = "https://api.harvardartmuseums.org/";
 
-export interface Print {
-  id: string;
-}
+const fields = [
+  "copyright",
+  "creditline",
+  "contact",
+  "rank",
+  "id",
+  "verificationleveldescription",
+  "images",
+  "standardreferencenumber",
+  "signed",
+  "classification",
+  "verificationlevel",
+  "primaryimageurl",
+  "technique",
+  "description",
+  "colors",
+  "provenance",
+  "dated",
+  "people",
+  "url",
+  "culture",
+];
 
-async function getAll(): Promise<Print[]> {
-  const response = await fetch(
-    `${baseUrl}/prints?apiKey=${process.env.API_KEY}`
-  );
+async function getPrints(page: string): Promise<Print[]> {
+  const query = new URLSearchParams({
+    apikey: process.env.API_KEY as string,
+    size: "10",
+    page,
+    classification: "Prints",
+    sort: "rank",
+    sortorder: "desc",
+    hasimage: "1",
+    q: "verificationlevel:4",
+    fields: fields.join(","),
+  });
 
-  console.log("response", response);
+  const response = await fetch(`${baseUrl}object?${query.toString()}`);
 
-  return response.json() as unknown as Print[];
+  const data = await response.json();
+  return data as Print[];
 }
 
 export default {
-  getAll,
+  getPrints,
 } as const;
