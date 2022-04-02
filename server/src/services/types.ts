@@ -2,7 +2,7 @@ interface Color {
   color: string;
   spectrum: string;
   hue: string;
-  percent: string;
+  percent: number;
   css3: string;
 }
 
@@ -25,22 +25,28 @@ interface Image {
 }
 
 interface Person {
-  role: "Artist";
-  birthplace: null;
-  gender: "male";
-  displaydate: "c. 1729 - 1765";
-  prefix: null;
-  culture: "British";
-  displayname: "James McArdell";
-  alphasort: "McArdell, James";
-  name: "James McArdell";
-  personid: 32221;
-  deathplace: null;
-  displayorder: 1;
+  role: string;
+  birthplace: string | null;
+  gender: string;
+  displaydate: string | null;
+  prefix: string | null;
+  culture: string;
+  displayname: string;
+  alphasort: string;
+  name: string;
+  personid: number;
+  deathplace: null | string;
+  displayorder: number;
 }
 
+interface SeeAlso {
+    id: string, 
+    type: string, 
+    format: string,
+    profile: string
+}
 export interface Print {
-  copyright: string;
+  copyright: string | null;
   creditline: string;
   contact: string;
   rank: number;
@@ -60,4 +66,6 @@ export interface Print {
   people: Person[];
   url: string;
   culture: string;
+  imagepermissionlevel: number;
+  seeAlso:
 }

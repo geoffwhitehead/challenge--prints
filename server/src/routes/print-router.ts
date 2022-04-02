@@ -22,6 +22,10 @@ export const getPrints = async (
   res.status(StatusCodes.OK).json({ prints });
 };
 
-router.get("/", handler(getPrints));
+export const paths = {
+  getPrints: "/",
+};
+
+router.get(paths.getPrints, handler(getPrints));
 
 export default router;

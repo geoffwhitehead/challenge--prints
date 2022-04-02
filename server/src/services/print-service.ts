@@ -1,5 +1,7 @@
+import { ServerError } from "@shared/errors";
 import fetch from "node-fetch";
 import { Print } from "./types";
+import logger from "jet-logger";
 
 const baseUrl = "https://api.harvardartmuseums.org";
 
@@ -39,10 +41,14 @@ async function getPrints(page: string): Promise<Print[]> {
     fields: fields.join(","),
   });
 
-  const response = await fetch(`${baseUrl}/object?${search.toString()}`);
-
-  const data = await response.json();
-  return data as Print[];
+  try {
+    const response = await fetch(`${baseUrl}/object?${search.toString()}`);
+    const data = await response.json();
+    return data as Print[];
+  } catch {
+    logger.err("Failed to fetch prints");
+    throw new ServerError("Failed to fetch prints");
+  }
 }
 
 export default {

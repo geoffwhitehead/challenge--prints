@@ -8,3 +8,12 @@ export abstract class CustomError extends Error {
     this.HttpStatus = httpStatus;
   }
 }
+
+export class ServerError extends CustomError {
+  public static readonly Msg = "Internal server error.";
+  public static readonly HttpStatus = HttpStatusCodes.INTERNAL_SERVER_ERROR;
+
+  constructor(msg: string = ServerError.Msg) {
+    super(msg, ServerError.HttpStatus);
+  }
+}

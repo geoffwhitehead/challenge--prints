@@ -1,10 +1,10 @@
 // Set the env file, must be first
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
-const result2 = dotenv.config({
-    path: `./src/pre-start/env/test.env`,
+const result = dotenv.config({
+  path: `./src/pre-start/env/.env.test.local`,
 });
 
-if (result2.error) {
-    throw result2.error;
+if (result.error) {
+  throw result.error;
 }
