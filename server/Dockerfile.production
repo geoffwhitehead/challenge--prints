@@ -1,0 +1,11 @@
+FROM node:14-alpine AS production
+ENV NODE_ENV production
+WORKDIR /app
+COPY ["package.json", "yarn.lock", "./"]
+COPY . .
+RUN yarn install --production
+RUN yarn build
+RUN rm -rf src/
+EXPOSE 8081
+CMD [ "yarn", "start" ]
+
