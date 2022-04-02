@@ -2,7 +2,7 @@
   "name": "express-gen-ts",
   "version": "0.0.0",
   "scripts": {
-    "build": "./node_modules/.bin/ts-node build.ts",
+    "build": "yarn tsc --build tsconfig.prod.json",
     "lint": "eslint . --ext .ts",
     "start": "node -r module-alias/register ./dist --env=production",
     "start:dev": "nodemon",
@@ -59,7 +59,8 @@
   },
   "eslintIgnore": [
     "src/public/",
-    "build.ts"
+    "build.ts",
+    "node_modules"
   ],
   "dependencies": {
     "command-line-args": "^5.2.1",
@@ -94,6 +95,7 @@
     "fs-extra": "^10.0.1",
     "jasmine": "^4.0.2",
     "nodemon": "^2.0.15",
+    "prettier": "^2.6.1",
     "supertest": "^6.2.2",
     "ts-node": "^10.7.0",
     "tsconfig-paths": "^3.14.1",
