@@ -8,9 +8,10 @@ import apiRouter from "./routes/api";
 import logger from "jet-logger";
 import { CustomError } from "@shared/errors";
 import bodyParser from "body-parser";
+import * as redis from "@services/redis";
 
 const app = express();
-
+redis.connect();
 /***********************************************************************************
  *                                  Middlewares
  **********************************************************************************/
