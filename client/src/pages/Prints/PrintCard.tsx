@@ -52,7 +52,6 @@ interface PrintCardProps {
 }
 
 export const PrintCard: React.FC<PrintCardProps> = ({ print }) => {
-  console.log("print", print);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -73,7 +72,11 @@ export const PrintCard: React.FC<PrintCardProps> = ({ print }) => {
         <CardHeader
           avatar={
             <Avatar
-              sx={{ bgcolor: print.colors[0].color || defaultAvatarBGColor }}
+              sx={{
+                bgcolor:
+                  print.colors?.[Math.round(print.colors.length / 2)]?.color ||
+                  defaultAvatarBGColor,
+              }}
               aria-label="recipe"
             >
               {print.verificationlevel}
@@ -84,7 +87,6 @@ export const PrintCard: React.FC<PrintCardProps> = ({ print }) => {
         />
         <CardMedia
           component="img"
-          // height="194"
           image={print.primaryimageurl}
           alt={print.title}
         />
@@ -96,7 +98,9 @@ export const PrintCard: React.FC<PrintCardProps> = ({ print }) => {
           )}
         </CardContent>
         <CardActions disableSpacing>
-          <Typography variant="subtitle2">Authors</Typography>
+          <Typography variant="subtitle2" sx={{ paddingLeft: 1 }}>
+            Authors
+          </Typography>
 
           <ExpandMore
             expand={expanded}
