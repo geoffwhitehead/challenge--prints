@@ -8,3 +8,12 @@ services:
       context: ./client
       target: production
       dockerfile: Dockerfile.production
+  server:
+    container_name: server-prod
+    image: server-prod
+    build:
+      context: ./server
+      target: production
+      dockerfile: Dockerfile.production
+    ports:
+      - 8081:8081

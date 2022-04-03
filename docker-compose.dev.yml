@@ -9,7 +9,7 @@ services:
       target: development
     volumes:
       - ./client/src:/app/src
-      - /client/node_modules
+      # - /client/node_modules
     ports:
       - 3000:3000
   server:
@@ -20,6 +20,12 @@ services:
       target: development
     volumes:
       - ./server/src:/server/src
-      - /server/node_modules
+      # - /server/node_modules
     ports:
       - 8000:8000
+  redis:
+    container_name: server-redis
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
