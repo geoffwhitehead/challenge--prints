@@ -2,9 +2,7 @@
 
 Express server that exposes a single endpoint to query a paginated list of prints. Frontend is a CRA app client that displays a single route to render a paginated list of prints.
 
-Queries are cached on the server using redis, keyed by page number (the pagination is static). React query is used in the front end to handle client caching.
-
-Services
+**Services**
 
 - Client (React)
 - Server (Node Express)
