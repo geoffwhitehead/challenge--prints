@@ -2,8 +2,8 @@ import { useQuery } from "react-query";
 import { printsList } from "../api";
 
 const cacheOptions = {
-  cacheTime: 1000 * 5,
-  stateTime: 1000 * 60 * 10,
+  cacheTime: 1000 * 60,
+  stateTime: 1000 * 120,
 };
 
 export const usePrints = () => {
