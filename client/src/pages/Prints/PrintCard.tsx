@@ -91,11 +91,16 @@ export const PrintCard: React.FC<PrintCardProps> = ({ print }) => {
           alt={print.title}
         />
         <CardContent>
-          {["Rank", "Description", "Provenance", "Culture", "Technique"].map(
-            (id) => (
-              <Row label={id} text={print[id.toLowerCase()]} />
-            )
-          )}
+          {[
+            "Rank",
+            "Description",
+            "Dated",
+            "Provenance",
+            "Culture",
+            "Technique",
+          ].map((id) => (
+            <Row label={id} text={print[id.toLowerCase()]} />
+          ))}
         </CardContent>
         <CardActions disableSpacing>
           <Typography variant="subtitle2" sx={{ paddingLeft: 1 }}>
@@ -107,6 +112,7 @@ export const PrintCard: React.FC<PrintCardProps> = ({ print }) => {
             onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"
+            data-testid="author-button"
           >
             <ExpandMoreIcon />
           </ExpandMore>

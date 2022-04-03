@@ -62,7 +62,7 @@ export interface Print {
   technique: string;
   description: string | null;
   colors: Color[];
-  provenance: string;
+  provenance: string | null;
   dated: string;
   people: Person[];
   url: string;

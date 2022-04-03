@@ -1,10 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { usePrints } from "../../hooks/fetchPrints";
 import { PrintCard } from "./PrintCard";
 import Masonry from "@mui/lab/Masonry";
 import { Box, Pagination } from "@mui/material";
 import { ChangeEvent } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const Prints: React.FC = () => {
   let { pageId } = useParams();
