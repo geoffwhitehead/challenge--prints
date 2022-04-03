@@ -1,12 +1,13 @@
 import { ServerError } from "@shared/errors";
 import fetch from "node-fetch";
-import { Print } from "./types";
+import { Paginated, Print } from "./types";
 import logger from "jet-logger";
 import * as redis from "@services/redis";
 
 const baseUrl = "https://api.harvardartmuseums.org";
 
 const fields = [
+  "title",
   "copyright",
   "creditline",
   "contact",
@@ -29,7 +30,7 @@ const fields = [
   "culture",
 ];
 
-async function getPrints(page: string): Promise<Print[]> {
+async function getPrints(page: string): Promise<Paginated<Print>> {
   const search = new URLSearchParams({
     apikey: process.env.API_KEY as string,
     size: "10",
@@ -49,7 +50,7 @@ async function getPrints(page: string): Promise<Print[]> {
       return cached;
     } else {
       const response = await fetch(`${baseUrl}/object?${search.toString()}`);
-      const data = (await response.json()) as Print[];
+      const data = (await response.json()) as Paginated<Print>;
       await redis.set(page, data);
       return data;
     }

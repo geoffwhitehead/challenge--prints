@@ -1,9 +1,18 @@
 import React from "react";
-import { PageRouter } from "./pages/Router";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Main } from "./pages/Main";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+export const queryClient = new QueryClient();
 
 export const App: React.FC = () => {
-  <div>welcome</div>;
-  return <PageRouter />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Main />
+      </Router>
+    </QueryClientProvider>
+  );
 };
 
 export default App;

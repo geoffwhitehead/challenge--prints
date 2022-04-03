@@ -24,7 +24,7 @@ interface Image {
   height: number;
 }
 
-interface Person {
+interface Person extends Record<string, any> {
   role: string;
   birthplace: string | null;
   gender: string;
@@ -45,7 +45,7 @@ interface SeeAlso {
   format: string;
   profile: string;
 }
-export interface Print {
+export interface Print extends Record<string, any> {
   title: string;
   copyright: string | null;
   creditline: string;

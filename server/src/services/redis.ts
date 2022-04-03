@@ -1,5 +1,5 @@
 import { createClient } from "redis";
-import { Print } from "./types";
+import { Paginated, Print } from "./types";
 
 const REDIS_CACHE_EXPIRY_SECONDS = 60 * 15;
 
@@ -19,6 +19,8 @@ export async function set(key: string, value: Record<string, any>) {
   await redis.expire(key, REDIS_CACHE_EXPIRY_SECONDS);
 }
 
-export async function get(key: string): Promise<Print[] | null> {
-  return (await redis.json.get(key)) as unknown as Print[] | null;
+export async function get(key: string): Promise<Paginated<Print> | null> {
+  return (await redis.json.get(
+    key
+  )) as unknown as Promise<Paginated<Print> | null>;
 }

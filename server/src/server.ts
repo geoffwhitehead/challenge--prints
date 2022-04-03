@@ -9,6 +9,7 @@ import logger from "jet-logger";
 import { CustomError } from "@shared/errors";
 import bodyParser from "body-parser";
 import * as redis from "@services/redis";
+import cors from "cors";
 
 const app = express();
 redis.connect();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
