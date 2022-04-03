@@ -7,12 +7,12 @@ import { Prints } from "./Prints/Prints";
 
 export const Main: React.FC = () => {
   return (
-    <Box sx={{ bgcolor: "#f5f5f5" }}>
+    <Box sx={{ bgcolor: "#f5f5f5", height: "100%", minHeight: "100vh" }}>
       <NavBar />
       <Container>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="prints/:id" element={<Prints />} />
+          <Route path="prints/:pageId" element={<Prints />} />
         </Routes>
       </Container>
     </Box>
