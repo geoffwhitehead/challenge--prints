@@ -18,7 +18,7 @@ Services
 
 ### **Running the app**
 
-1. Env variables: Once cloned, open `server/src/pre-start-env/.env.development.local` and add the `API_KEY` variable.
+1. Env variables: Once cloned, open `server/src/pre-start-env/.env.development.local` and add the `API_KEY` variable. This is used for the harvard art museum api (https://api.harvardartmuseums.org).
 2. Run `yarn dev` in the root directory. This will run `docker-compose up` . The app will be available on `localhost:3000`
 
 By default, the services run on these addresses:
